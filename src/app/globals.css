@@ -2,32 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+   
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer components {
+    .btn-custom1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      -webkit-text-stroke: 0.3vw transparent;
+      font-weight: 700;
+      font-size: 50px;
+      color: transparent;
+    width: fit-content;
+      text-transform: uppercase;
+      position: relative;
+      margin-inline: auto;
+    }
+    
+    .btn-custom1::before{
+        content:"menu";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        -webkit-text-stroke: 0vw #383d52;
+        border-right: 3px solid white;
+        overflow: hidden;
+        color: rgb(236, 232, 236);
+        animation: animate  6s infinite linear;
+    }
+    @keyframes animate {
+        0%,10%,100%{
+            width: 0%;
+        }
+        70%,90%{
+            width: 100%;
+        }
+    }
   }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+
+
+
+  .line-container {
+    @apply relative w-full h-1 overflow-hidden bg-green-200;
   }
-}
+  
+  .line {
+    @apply absolute w-full h-full bg-gradient-to-r from-blue-500 to-green-500;
+    animation: move 6s ease-in-out infinite;
+  }
+  
+  @keyframes move {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+  }
